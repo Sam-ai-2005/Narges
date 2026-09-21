@@ -14,6 +14,17 @@ let started = false;
 
 
 /* =========================
+   آهنگ سایت
+========================= */
+
+const backgroundMusic = new Audio("misuc.mp3");
+
+backgroundMusic.loop = true;
+
+backgroundMusic.volume = 0.5;
+
+
+/* =========================
    ساخت ذرات شناور
 ========================= */
 
@@ -56,6 +67,17 @@ startButton.addEventListener("click", () => {
     }
 
     started = true;
+
+
+    /* =========================
+       شروع آهنگ
+    ========================== */
+
+    backgroundMusic.play().catch((error) => {
+
+        console.log("Music could not start:", error);
+
+    });
 
 
     /* =========================
