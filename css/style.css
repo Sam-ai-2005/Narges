@@ -489,7 +489,7 @@ body {
     z-index: 2;
 
     font-size:
-        clamp(42px, 10vw, 72px);
+        clamp(39px, 9vw, 67px);
 
     font-weight: 600;
 
