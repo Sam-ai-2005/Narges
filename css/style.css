@@ -1,0 +1,1607 @@
+/* =========================
+   تنظیمات اصلی
+========================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --background: #09070a;
+    --text: #f8eef2;
+    --muted: #b7a9af;
+    --accent: #ff4f78;
+    --accent-light: #ff8ba7;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            #241018 0%,
+            #0f090c 35%,
+            var(--background) 70%
+        );
+
+    color: var(--text);
+
+    font-family: "Vazirmatn", sans-serif;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================
+   نورهای پس زمینه
+========================= */
+
+.background-glow {
+    position: fixed;
+
+    width: 400px;
+    height: 400px;
+
+    border-radius: 50%;
+
+    filter: blur(120px);
+
+    opacity: 0.12;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+.glow-one {
+    top: -150px;
+    right: -100px;
+
+    background: var(--accent);
+
+    animation:
+        glowMoveOne 12s ease-in-out infinite alternate;
+}
+
+.glow-two {
+    bottom: -200px;
+    left: -100px;
+
+    background: #9c3153;
+
+    animation:
+        glowMoveTwo 15s ease-in-out infinite alternate;
+}
+
+@keyframes glowMoveOne {
+
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(-120px, 100px) scale(1.2);
+    }
+
+    100% {
+        transform: translate(-30px, 180px) scale(0.9);
+    }
+}
+
+@keyframes glowMoveTwo {
+
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(100px, -100px) scale(1.15);
+    }
+
+    100% {
+        transform: translate(180px, -40px) scale(0.9);
+    }
+}
+
+
+/* =========================
+   ذرات شناور
+========================= */
+
+.particles {
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+
+    bottom: -20px;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: var(--accent-light);
+
+    opacity: 0;
+
+    box-shadow:
+        0 0 10px rgba(255, 79, 120, 0.8),
+        0 0 20px rgba(255, 79, 120, 0.3);
+
+    animation:
+        particleFloat linear infinite;
+}
+
+@keyframes particleFloat {
+
+    0% {
+        transform:
+            translateY(0)
+            scale(0.5);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.6;
+    }
+
+    70% {
+        opacity: 0.35;
+    }
+
+    100% {
+        transform:
+            translateY(-110vh)
+            scale(1.2);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================
+   مرحله اول
+========================= */
+
+.welcome {
+    min-height: 100vh;
+
+    position: relative;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    z-index: 2;
+}
+
+.intro-content {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 25px;
+
+    animation:
+        introAppear 1.5s ease forwards;
+}
+
+@keyframes introAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(30px)
+            scale(0.95);
+
+        filter: blur(10px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter: blur(0);
+    }
+}
+
+
+/* =========================
+   قلب کوچک
+========================= */
+
+.small-heart {
+    color: var(--accent-light);
+
+    font-size: 28px;
+
+    opacity: 0.7;
+
+    animation:
+        floatingHeart 3s ease-in-out infinite,
+        heartGlow 2s ease-in-out infinite;
+}
+
+@keyframes floatingHeart {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes heartGlow {
+
+    0%,
+    100% {
+        text-shadow:
+            0 0 5px rgba(255, 79, 120, 0.2);
+    }
+
+    50% {
+        text-shadow:
+            0 0 25px rgba(255, 79, 120, 0.8);
+    }
+}
+
+
+/* =========================
+   دکمه
+========================= */
+
+#startButton {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    padding: 18px 34px;
+
+    min-width: 190px;
+
+    border-radius: 100px;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    background: rgba(255, 255, 255, 0.06);
+
+    backdrop-filter: blur(15px);
+
+    -webkit-backdrop-filter: blur(15px);
+
+    color: var(--text);
+
+    font-family: inherit;
+
+    font-size: 18px;
+
+    font-weight: 500;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease,
+        opacity 0.6s ease;
+
+    overflow: hidden;
+}
+
+#startButton::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -120%;
+
+    width: 80%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.15),
+            transparent
+        );
+
+    transform: skewX(-20deg);
+
+    animation:
+        buttonShine 4s ease-in-out infinite;
+}
+
+@keyframes buttonShine {
+
+    0% {
+        left: -120%;
+    }
+
+    35%,
+    100% {
+        left: 150%;
+    }
+}
+
+#startButton:hover {
+
+    transform:
+        translateY(-4px)
+        scale(1.02);
+
+    background:
+        rgba(255, 79, 120, 0.12);
+
+    box-shadow:
+        0 20px 50px rgba(255, 50, 100, 0.2),
+        0 0 30px rgba(255, 79, 120, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+#startButton:active {
+
+    transform:
+        scale(0.96);
+}
+
+.button-heart {
+
+    color: var(--accent-light);
+
+    font-size: 24px;
+
+    transition:
+        transform 0.3s ease;
+}
+
+#startButton:hover .button-heart {
+
+    transform:
+        scale(1.3)
+        rotate(-8deg);
+}
+
+
+/* =========================
+   حالت کلیک
+========================= */
+
+#startButton.clicked {
+
+    animation:
+        buttonDisappear 0.8s ease forwards;
+}
+
+@keyframes buttonDisappear {
+
+    0% {
+        opacity: 1;
+
+        transform:
+            scale(1);
+    }
+
+    40% {
+        opacity: 1;
+
+        transform:
+            scale(1.08);
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            scale(0.5);
+
+        filter: blur(10px);
+    }
+}
+
+
+/* =========================
+   پیام دوست دارم
+========================= */
+
+.love-container {
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 8px;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0.7);
+}
+
+.love-container.show {
+
+    animation:
+        loveReveal 1.8s
+        cubic-bezier(.17,.89,.32,1.28)
+        forwards;
+}
+
+.love-container h1 {
+
+    position: relative;
+
+    z-index: 2;
+
+    font-size:
+        clamp(42px, 10vw, 72px);
+
+    font-weight: 600;
+
+    letter-spacing: -2px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #ffd8e2,
+            #ff7193
+        );
+
+    -webkit-background-clip: text;
+
+    background-clip: text;
+
+    color: transparent;
+
+    text-shadow:
+        0 0 30px rgba(255, 79, 120, 0.15);
+}
+
+.love-heart {
+
+    font-size: 30px;
+
+    animation:
+        heartBeat 1.5s ease-in-out infinite;
+}
+
+@keyframes loveReveal {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.5)
+            translateY(30px);
+
+        filter: blur(15px);
+    }
+
+    50% {
+
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.12)
+            translateY(0);
+
+        filter: blur(0);
+    }
+
+    70% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.96);
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+}
+
+@keyframes heartBeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+
+/* =========================
+   نور پشت نوشته
+========================= */
+
+.heart-glow {
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    background: var(--accent);
+
+    opacity: 0.15;
+
+    filter: blur(80px);
+
+    border-radius: 50%;
+
+    z-index: -1;
+
+    animation:
+        glowPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+
+    0%,
+    100% {
+
+        transform: scale(0.8);
+
+        opacity: 0.08;
+    }
+
+    50% {
+
+        transform: scale(1.3);
+
+        opacity: 0.2;
+    }
+}
+
+
+/* =========================
+   پیام برو پایین
+========================= */
+
+.scroll-message {
+
+    position: absolute;
+
+    bottom: 55px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 8px;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+.scroll-message.show {
+
+    animation:
+        scrollMessageReveal 1.2s ease forwards;
+}
+
+.scroll-message p {
+
+    color: var(--muted);
+
+    font-size: 15px;
+
+    font-weight: 300;
+}
+
+.scroll-arrow {
+
+    color: var(--accent-light);
+
+    font-size: 30px;
+
+    animation:
+        arrowMove 1.5s ease-in-out infinite;
+}
+
+@keyframes scrollMessageReveal {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+@keyframes arrowMove {
+
+    0%,
+    100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(10px);
+    }
+}
+
+
+/* =========================
+   مرحله انتظار
+========================= */
+
+.waiting {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #1b0d13,
+            #09070a 70%
+        );
+
+    z-index: 2;
+}
+
+.waiting-content {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 20px;
+
+    animation:
+        waitingAppear 1s ease;
+}
+
+@keyframes waitingAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(0.9);
+
+        filter: blur(8px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+
+        filter: blur(0);
+    }
+}
+
+.waiting-content h2 {
+
+    font-size: 25px;
+
+    font-weight: 500;
+}
+
+.waiting-content p {
+
+    color: var(--muted);
+
+    font-size: 15px;
+
+    font-weight: 300;
+}
+
+
+/* =========================
+   تایمر
+========================= */
+
+.loader {
+
+    position: relative;
+
+    width: 130px;
+    height: 130px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 10px;
+}
+
+.loader-ring {
+
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    border-top-color: var(--accent);
+
+    animation:
+        timerSpin 1.2s linear infinite;
+}
+
+.loader-inner {
+
+    position: absolute;
+
+    inset: 14px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255, 79, 120, 0.12);
+
+    animation:
+        timerSpinReverse 4s linear infinite;
+}
+
+.loader::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 10px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255, 79, 120, 0.15);
+}
+
+.loader::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: var(--accent-light);
+
+    box-shadow:
+        0 0 10px var(--accent),
+        0 0 20px var(--accent);
+
+    top: 4px;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+}
+
+#timer {
+
+    font-size: 38px;
+
+    font-weight: 300;
+
+    color: var(--text);
+
+    text-shadow:
+        0 0 20px rgba(255, 79, 120, 0.25);
+}
+
+@keyframes timerSpin {
+
+    to {
+        transform:
+            rotate(360deg);
+    }
+}
+
+@keyframes timerSpinReverse {
+
+    to {
+        transform:
+            rotate(-360deg);
+    }
+}
+
+
+/* ==================================================
+   بخش خاطرات - CINEMATIC
+================================================== */
+
+.memories {
+
+    position: relative;
+
+    min-height: 100vh;
+
+    padding:
+        150px
+        20px
+        180px;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 20%,
+            rgba(255, 79, 120, 0.08),
+            transparent 45%
+        ),
+        linear-gradient(
+            180deg,
+            #09070a 0%,
+            #10080d 50%,
+            #09070a 100%
+        );
+
+    z-index: 2;
+}
+
+
+/* =========================
+   هاله نور
+========================= */
+
+.memories::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 600px;
+    height: 600px;
+
+    top: 10%;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        rgba(255, 50, 100, 0.06);
+
+    filter:
+        blur(140px);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   معرفی بخش
+========================= */
+
+.memories-intro {
+
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 650px;
+
+    margin:
+        0 auto
+        130px;
+
+    text-align: center;
+
+    opacity: 0;
+
+    transform:
+        translateY(60px);
+
+    animation:
+        memoriesIntro 1.2s ease forwards;
+
+    animation-timeline: view();
+
+    animation-range:
+        entry 5%
+        cover 30%;
+}
+
+.memories-small {
+
+    display: block;
+
+    margin-bottom: 18px;
+
+    color: var(--accent-light);
+
+    font-size: 20px;
+
+    font-weight: 300;
+
+    letter-spacing: 2px;
+
+    opacity: 0.8;
+}
+
+.memories-intro h2 {
+
+    font-size:
+        clamp(34px, 8vw, 58px);
+
+    font-weight: 500;
+
+    letter-spacing: -1px;
+
+    margin-bottom: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #ffd9e3 45%,
+            #ff7193
+        );
+
+    -webkit-background-clip: text;
+
+    background-clip: text;
+
+    color: transparent;
+}
+
+.memories-intro p {
+
+    color: var(--muted);
+
+    font-size: 16px;
+
+    font-weight: 300;
+
+    line-height: 2;
+
+    opacity: 0.8;
+}
+
+@keyframes memoriesIntro {
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================
+   گالری
+========================= */
+
+.memory-gallery {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: min(1050px, 100%);
+
+    margin: 0 auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 180px;
+}
+
+
+/* =========================
+   کارت عکس
+========================= */
+
+.memory-card {
+
+    position: relative;
+
+    width: min(700px, 88%);
+
+    opacity: 0;
+
+    transform:
+        translateY(100px)
+        scale(0.94);
+
+    animation:
+        memoryReveal 1.3s
+        cubic-bezier(.2,.7,.2,1)
+        forwards;
+
+    animation-timeline: view();
+
+    animation-range:
+        entry 5%
+        cover 32%;
+}
+
+.memory-card:nth-child(odd) {
+
+    margin-right: 5%;
+}
+
+.memory-card:nth-child(even) {
+
+    margin-left: 5%;
+}
+
+
+/* =========================
+   قاب عکس
+========================= */
+
+.memory-image {
+
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 16 / 10;
+
+    overflow: hidden;
+
+    border-radius: 22px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.13);
+
+    background:
+        #120a0e;
+
+    box-shadow:
+
+        0 35px 100px
+        rgba(0, 0, 0, 0.55),
+
+        0 0 0
+        rgba(255, 79, 120, 0);
+
+    transition:
+        box-shadow 0.8s ease,
+        transform 0.8s ease;
+}
+
+
+/* =========================
+   عکس
+========================= */
+
+.memory-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transform:
+        scale(1.04);
+
+    filter:
+        brightness(0.88)
+        saturate(0.9);
+
+    transition:
+        transform 1.5s
+        cubic-bezier(.2,.7,.2,1),
+
+        filter 1s ease;
+}
+
+
+/* =========================
+   لایه سینمایی
+========================= */
+
+.memory-image::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 2;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,0.05) 0%,
+            transparent 45%,
+            rgba(0,0,0,0.65) 100%
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   نور عبوری
+========================= */
+
+.memory-image::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: -120%;
+
+    width: 70%;
+
+    height: 100%;
+
+    z-index: 3;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.08),
+            transparent
+        );
+
+    transform:
+        skewX(-20deg);
+
+    transition:
+        left 1.2s ease;
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   Hover
+========================= */
+
+.memory-card:hover {
+
+    transform:
+        translateY(-8px);
+}
+
+.memory-card:hover
+.memory-image {
+
+    box-shadow:
+
+        0 45px 110px
+        rgba(0, 0, 0, 0.6),
+
+        0 0 45px
+        rgba(255, 79, 120, 0.08);
+}
+
+.memory-card:hover
+.memory-image img {
+
+    transform:
+        scale(1.09);
+
+    filter:
+        brightness(1)
+        saturate(1.05);
+}
+
+.memory-card:hover
+.memory-image::after {
+
+    left: 150%;
+}
+
+
+/* =========================
+   کپشن عکس
+========================= */
+
+.memory-caption {
+
+    position: absolute;
+
+    right: 30px;
+
+    bottom: 25px;
+
+    z-index: 5;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 300;
+
+    opacity: 0.9;
+
+    transition:
+        transform 0.5s ease,
+        opacity 0.5s ease;
+}
+
+.memory-caption::before {
+
+    content: "";
+
+    width: 24px;
+
+    height: 1px;
+
+    background:
+        var(--accent-light);
+
+    box-shadow:
+        0 0 8px
+        rgba(255,79,120,0.5);
+}
+
+.memory-card:hover
+.memory-caption {
+
+    transform:
+        translateX(-5px);
+
+    opacity: 1;
+}
+
+
+/* =========================
+   نور دور کارت
+========================= */
+
+.memory-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: -15px;
+
+    border-radius: 30px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,79,120,0.12),
+            transparent 65%
+        );
+
+    filter:
+        blur(25px);
+
+    opacity: 0;
+
+    transition:
+        opacity 0.8s ease;
+
+    z-index: -1;
+
+    pointer-events: none;
+}
+
+.memory-card:hover::before {
+
+    opacity: 1;
+}
+
+
+/* =========================
+   انیمیشن ورود عکس
+========================= */
+
+@keyframes memoryReveal {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(100px)
+            scale(0.94);
+
+        filter:
+            blur(8px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter:
+            blur(0);
+    }
+}
+
+
+/* =========================
+   پایان خاطرات
+========================= */
+
+.memories-ending {
+
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 16px;
+
+    margin-top: 180px;
+
+    color: var(--muted);
+
+    text-align: center;
+}
+
+.memories-ending p {
+
+    font-size: 15px;
+
+    font-weight: 300;
+
+    opacity: 0.75;
+}
+
+.ending-heart {
+
+    color: var(--accent-light);
+
+    font-size: 36px;
+
+    animation:
+        endingHeart 2.2s
+        ease-in-out
+        infinite;
+
+    text-shadow:
+        0 0 20px
+        rgba(255,79,120,0.4);
+}
+
+@keyframes endingHeart {
+
+    0%,
+    100% {
+
+        transform:
+            scale(1);
+
+        opacity: 0.55;
+    }
+
+    50% {
+
+        transform:
+            scale(1.25);
+
+        opacity: 1;
+    }
+}
+
+
+/* =========================
+   موبایل
+========================= */
+
+@media (max-width: 600px) {
+
+    .background-glow {
+
+        width: 250px;
+        height: 250px;
+
+        filter: blur(90px);
+    }
+
+    #startButton {
+
+        min-width: 170px;
+
+        padding: 16px 30px;
+
+        font-size: 16px;
+    }
+
+    .scroll-message {
+
+        bottom: 35px;
+    }
+
+    .waiting-content h2 {
+
+        font-size: 21px;
+    }
+
+    .particle {
+
+        width: 3px;
+        height: 3px;
+    }
+
+    .memories {
+
+        padding:
+            110px
+            15px
+            130px;
+    }
+
+    .memories-intro {
+
+        margin-bottom: 90px;
+    }
+
+    .memories-intro h2 {
+
+        font-size: 34px;
+    }
+
+    .memories-intro p {
+
+        font-size: 14px;
+
+        line-height: 1.9;
+    }
+
+    .memory-gallery {
+
+        gap: 100px;
+    }
+
+    .memory-card {
+
+        width: 94%;
+
+        margin-left: auto !important;
+
+        margin-right: auto !important;
+    }
+
+    .memory-image {
+
+        aspect-ratio: 4 / 5;
+
+        border-radius: 17px;
+    }
+
+    .memory-caption {
+
+        right: 20px;
+
+        bottom: 20px;
+
+        font-size: 13px;
+    }
+
+    .memory-caption::before {
+
+        width: 18px;
+    }
+
+    .memories-ending {
+
+        margin-top: 120px;
+    }
+}
