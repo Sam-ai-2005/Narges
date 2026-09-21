@@ -3,6 +3,7 @@ const startButton = document.getElementById("startButton");
 const waitingSection = document.getElementById("waitingSection");
 
 const loveMessage = document.getElementById("loveMessage");
+const loveLanguage = document.getElementById("loveLanguage");
 
 const scrollMessage = document.getElementById("scrollMessage");
 
@@ -162,20 +163,106 @@ startButton.addEventListener("click", async () => {
 
         setTimeout(() => {
 
-            loveMessage.classList.add("show");
+    loveMessage.classList.add("show");
 
 
-            /*
-             * بعد از 3 ثانیه
-             */
+    /* =========================
+       دوست دارم به چند زبان
+    ========================== */
+
+    const loveLanguages = [
+        "دوست دارم",
+        "I Love You",
+        "Je t’aime",
+        "Seni seviyorim",
+        "Ich liebe dich",
+        "Ti amo",
+        "Я тебя люблю",
+        "愛してる",
+        "사랑해",
+        "أحبك",
+        "Eu te amo"
+    ];
+
+    let currentLanguage = 0;
+
+    function changeLoveLanguage() {
+
+        loveLanguage.classList.add("fade-out");
+
+        setTimeout(() => {
+
+            currentLanguage++;
+
+            if (currentLanguage >= loveLanguages.length) {
+
+                currentLanguage = 0;
+
+            }
+
+            loveLanguage.textContent =
+                loveLanguages[currentLanguage];
+
+            loveLanguage.classList.remove("fade-out");
+
+            loveLanguage.classList.add("fade-in");
 
             setTimeout(() => {
 
-                scrollMessage.classList.add("show");
+                loveLanguage.classList.remove("fade-in");
 
-            }, 3000);
+            }, 50);
 
-        }, 800);
+        }, 700);
+    }
+
+
+    /* هر 1.5 ثانیه زبان عوض شود */
+
+    const languageInterval =
+        setInterval(changeLoveLanguage, 1500);
+
+
+    /* =========================
+       بعد از تمام زبان‌ها
+    ========================== */
+
+    setTimeout(() => {
+
+        clearInterval(languageInterval);
+
+        loveLanguage.classList.add("fade-out");
+
+        setTimeout(() => {
+
+            loveLanguage.textContent = "دوست دارم";
+
+            loveLanguage.classList.remove("fade-out");
+
+            loveLanguage.classList.add("fade-in");
+
+            setTimeout(() => {
+
+                loveLanguage.classList.remove("fade-in");
+
+            }, 50);
+
+        }, 700);
+
+    }, loveLanguages.length * 1500);
+
+
+    /* =========================
+       نمایش پیام پایین صفحه
+    ========================== */
+
+    setTimeout(() => {
+
+        scrollMessage.classList.add("show");
+
+    }, loveLanguages.length * 1500 + 3000);
+
+}, 800);
 
     }, 10000);
 
