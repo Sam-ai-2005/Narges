@@ -17,11 +17,15 @@ let started = false;
    آهنگ سایت
 ========================= */
 
-const backgroundMusic = new Audio("misuc.mp3");
+const backgroundMusic = new Audio();
+
+backgroundMusic.src = "./misuc.mp3";
 
 backgroundMusic.loop = true;
 
 backgroundMusic.volume = 0.5;
+
+backgroundMusic.preload = "auto";
 
 
 /* =========================
@@ -60,7 +64,7 @@ createParticles();
    شروع تجربه
 ========================= */
 
-startButton.addEventListener("click", () => {
+startButton.addEventListener("click", async () => {
 
     if (started) {
         return;
@@ -73,11 +77,22 @@ startButton.addEventListener("click", () => {
        شروع آهنگ
     ========================== */
 
-    backgroundMusic.play().catch((error) => {
+    try {
+
+        backgroundMusic.currentTime = 0;
+
+        await backgroundMusic.play();
+
+        console.log("Music started successfully");
+
+    } catch (error) {
 
         console.log("Music could not start:", error);
 
-    });
+        started = false;
+
+        return;
+    }
 
 
     /* =========================
@@ -114,8 +129,7 @@ startButton.addEventListener("click", () => {
 
             seconds--;
 
-            timer.textContent =
-                seconds;
+            timer.textContent = seconds;
 
 
             if (seconds <= 0) {
